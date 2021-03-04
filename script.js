@@ -131,13 +131,3 @@ function clear() {
 function reset() {
     display.textContent = 0;
 }
-
-
-
-const container = document.getElementById("container");
-
-function makeRows() {
-  container.style.setProperty('--grid-rows', 4);
-  container.style.setProperty('--grid-cols', 5);
-}
-makeRows();
