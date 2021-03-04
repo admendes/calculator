@@ -1,3 +1,8 @@
+h3 {
+    text-align: center;
+    font-size: 32px;
+}
+
 body {
     color: rgb(226, 215, 215);
     background-color: rgb(67, 71, 71);
@@ -8,5 +13,29 @@ body {
 
 #controls {
     display: grid;
-    
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: repeat(4, auto);
 }
+
+button {
+    background-color: #4c56af;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 25px 2px;
+    cursor: pointer;
+}
+
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    max-width: 500px;
+    min-height: 500px;
+    border: 8px solid #4c56af;
+}
+

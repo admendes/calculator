@@ -22,35 +22,51 @@ keys.addEventListener("click", e => {
         clearNext = false;
     }
     
-    addToDisplay(keyContent);
 
     if (action == "add") {
         doPendingOperation(displayedNum);
         pendingOperation = "+";
     }
 
-    if (action == "subtract") {
+    else if (action == "subtract") {
         doPendingOperation(displayedNum);
         pendingOperation = "-";
     }
 
-    if (action == "multiply") {
+    else if (action == "multiply") {
         doPendingOperation(displayedNum);
         pendingOperation = "*";
     }
 
-    if (action == "divide") {
+    else if (action == "divide") {
         doPendingOperation(displayedNum);
         pendingOperation = "/";
     }
 
-    if (action == "calculate") {
-        ans = operate(ans, displayedNum, pendingOperation);
-        clear();
-        addToDisplay(ans);
+    else if (action == "clear") {
+        reset();
         ans = 0;
-        clearNext = true;
+        clearNext = false;
         pendingOperation = null;
+    }
+
+    else if (action == "calculate") {
+        if (pendingOperation != null) {
+            ans = operate(ans, displayedNum, pendingOperation);
+            clear();
+            addToDisplay(ans);
+            ans = 0;
+            clearNext = true;
+            pendingOperation = null;
+        }
+        else {
+            clear();
+            addToDisplay(displayedNum);
+        }
+    }
+
+    else {
+        addToDisplay(keyContent);
     }
  }
 })
@@ -115,3 +131,13 @@ function clear() {
 function reset() {
     display.textContent = 0;
 }
+
+
+
+const container = document.getElementById("container");
+
+function makeRows() {
+  container.style.setProperty('--grid-rows', 4);
+  container.style.setProperty('--grid-cols', 5);
+}
+makeRows();
