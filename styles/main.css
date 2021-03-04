@@ -1,0 +1,12 @@
+body {
+    color: rgb(226, 215, 215);
+    background-color: rgb(67, 71, 71);
+    font-family: monaco, Consolas, Lucida Console, monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; 
+    font-size: 16px;
+    min-width: 600px;
+}
+
+#controls {
+    display: grid;
+    
+}
