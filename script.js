@@ -1,11 +1,82 @@
 const display = document.getElementById("display");
+const keys = document.getElementById("controls");
+let ans = 0;
+let pendingOperation = null;
+let clearNext = false;
+
+keys.addEventListener("click", e => {
+ if (e.target.matches("button")) {
+    const key = e.target
+    const action = key.dataset.action
+    const keyContent = key.textContent
+    const displayedNum = display.textContent
+
+    console.log(key)
+    console.log(action)
+    console.log(keyContent)
+    console.log(displayedNum)
+
+    
+    if (clearNext) {
+        clear();
+        clearNext = false;
+    }
+    
+    addToDisplay(keyContent);
+
+    if (action == "add") {
+        doPendingOperation(displayedNum);
+        pendingOperation = "+";
+    }
+
+    if (action == "subtract") {
+        doPendingOperation(displayedNum);
+        pendingOperation = "-";
+    }
+
+    if (action == "multiply") {
+        doPendingOperation(displayedNum);
+        pendingOperation = "*";
+    }
+
+    if (action == "divide") {
+        doPendingOperation(displayedNum);
+        pendingOperation = "/";
+    }
+
+    if (action == "calculate") {
+        ans = operate(ans, displayedNum, pendingOperation);
+        clear();
+        addToDisplay(ans);
+        ans = 0;
+        clearNext = true;
+        pendingOperation = null;
+    }
+ }
+})
+
+function doPendingOperation(displayedNum) {
+    if (pendingOperation == null) {
+        ans = operate(ans, displayedNum, "+");
+        clear();
+        addToDisplay(ans);
+        clearNext = true;
+    }
+    else {
+        ans = operate(ans, displayedNum, pendingOperation);
+        clear();
+        addToDisplay(ans);
+        clearNext = true;
+        pendingOperation = "+"
+    }
+}
 
 function add (num1, num2) {
-    return num1 + num2;
+    return parseFloat(num1) + parseFloat(num2);
 }
 
 function subtract (num1, num2) {
-    return num1 - num2;
+    return parseFloat(num1) - parseFloat(num2);
 }
 
 function multiply (num1, num2) {
@@ -44,11 +115,3 @@ function clear() {
 function reset() {
     display.textContent = 0;
 }
-
-console.log(operate(3,4,"*"))
-
-addToDisplay(0);
-addToDisplay(4);
-clear();
-reset();
-addToDisplay(5);
